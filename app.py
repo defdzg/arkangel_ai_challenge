@@ -95,15 +95,21 @@ def main():
     This function sets up a Graphical User Interface (GUI) for an the app and launches it, while
     also calling two other functions to retrieve workers' metadata and faces.
     """
+    
+    examples = ['./demo_images/angry_demo.jpg', './demo_images/disgust_demo.jpg', './demo_images/fear_demo.jpg', './demo_images/Giuliana_demo.jpeg', './demo_images/Jose_demo.jpg']
+    
     app = gr.Interface(fn=worker_recognition,
                        inputs="image",
                        outputs="textbox",
                        title='AI-Challenge Demo v1.0',
-                       css="footer {visibility: hidden}")
-
+                       description='This app recognizes workers in images and predicts their emotions.',
+                       examples=examples)
+    
     get_workers_metadata()
     get_workers_faces()
-    app.launch(server_name="0.0.0.0", server_port=80)
+    # If you want to run the app locally, uncomment the line below and comment out the line after it.
+    # app.launch(server_name="0.0.0.0", server_port=80)
+    app.launch()
 
 
 main()
